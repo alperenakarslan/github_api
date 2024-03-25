@@ -42,8 +42,25 @@ function getData(e){
 
 function clearAllSearched(){
     // Tüm arananları temizle.
+
+    if(confirm("emin misiniz?")){
+        // Silme
+
+        Storage.clearAllSearchedUsersFromStorage(); // storageden temizleyecek.
+        ui.clearAllSearchedFromUI();
+    }
+
 }
 
 function getAllSearched(){
     // Arananları storagedan al ve UI'ya ekle.
+
+    let users = Storage.getSearchedUsersFromStorage();
+    let result = "";
+
+    users.forEach(user => {
+        result += `<li class = "list-group-item">${user}</li>`;
+    });
+
+    lasUsers.innerHTML = result;
 }
